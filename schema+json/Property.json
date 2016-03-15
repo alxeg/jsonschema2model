@@ -1,0 +1,40 @@
+{
+    "id": "Property",
+    "type": "object",
+    "description": "A key-value pair with a specified visibility scope.",
+    "properties": {
+        "etag": {
+            "type": "string",
+            "description": "ETag of the property."
+        },
+        "id": {
+            "type": "string",
+            "description": "The ID of the property."
+        },
+        "someIdField": {
+            "type": "string",
+            "description": "The ID of the property."
+        },
+        "key": {
+            "type": "string",
+            "description": "The key of this property."
+        },
+        "value": {
+            "type": "string",
+            "description": "The value of this property."
+        },
+        "visibility": {
+            "type": "string",
+            "description": "The visibility scope of this property."
+        }
+    },
+    "required": [ "key" ],
+    "links": [
+        {
+            "title": "A link back to this reference.",
+            "rel": "self",
+            "href": "{id}",
+            "mediaType": "application/vnd.ncloudtech.cloudoffice.property+json;v=1"
+        }
+    ]
+}

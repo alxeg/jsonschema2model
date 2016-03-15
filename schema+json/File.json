@@ -1,0 +1,213 @@
+{
+    "id": "File",
+    "type": "object",
+    "description": "The metadata for a file.",
+    "properties": {
+        "checksum": {
+            "type": "string",
+            "description": "An MD5 checksum for the content of this file."
+        },
+        "createdDate": {
+            "type": "string",
+            "description": "Create time for this file (formatted ISO8601 timestamp).",
+            "format": "date-time"
+        },
+        "creator": {
+            "type": "string",
+            "description": "The original creator (userId) of this file."
+        },
+        "description": {
+            "type": "string",
+            "description": "A short description of the file."
+        },
+        "etag": {
+            "type": "string",
+            "description": "ETag (HTTP Entity Tag) of the file."
+        },
+        "fileSize": {
+            "type": "string",
+            "description": "The size of the file in bytes.",
+            "format": "int64"
+        },
+        "headRevisionId": {
+            "type": "string",
+            "description": "The ID of the file's head (last) revision."
+        },
+        "id": {
+            "type": "string",
+            "description": "The ID of the file."
+        },
+        "isRoot": {
+            "type": "boolean",
+            "description": "Whether or not the parent is the root folder."
+        },
+        "lastModifyingUserId": {
+            "type": "string",
+            "description": "The last userId to modify this file."
+        },
+        "lastViewedByMeDate": {
+            "type": "string",
+            "description": "Last time this file was viewed by the user (formatted RFC 3339 timestamp).",
+            "format": "date-time"
+        },
+        "mediaType": {
+            "type": "string",
+            "description": "The media type of the file."
+        },
+        "modifiedByMeDate": {
+            "type": "string",
+            "description": "Last time this file was modified by the user (formatted RFC 3339 timestamp).",
+            "format": "date-time"
+        },
+        "modifiedDate": {
+            "type": "string",
+            "description": "Last time this file was modified by anyone (formatted RFC 3339 timestamp).",
+            "format": "date-time"
+        },
+        "originalFile": {
+            "type": "string",
+            "description": "The original file id for thumbnail."
+        },
+        "originalFilename": {
+            "type": "string",
+            "description": "The original filename of the file that was uploaded, imported and converted to the storage."
+        },
+        "originalMediaType": {
+            "type": "string",
+            "description": "The original media type of the file that was uploaded, imported and converted to the storage."
+        },
+        "ownerId": {
+            "type": "string",
+            "description": "The owner (userId) of this file."
+        },
+        "parentId": {
+            "type": "string",
+            "description": "The parent folder (parentReferenceId) which contains this file. The root has no parent"
+        },
+        "properties": {
+            "type": "array",
+            "description": "The list of file's properties.",
+            "items": {
+                "$ref": "Property.json"
+            }
+        },
+        "quotaBytesUsed": {
+            "type": "string",
+            "description": "The number of quota bytes used by this file.",
+            "format": "int64"
+        },
+        "sharedWithMeDate": {
+            "type": "string",
+            "description": "Time at which this file was shared with the user (formatted RFC 3339 timestamp).",
+            "format": "date-time"
+        },
+        "thumbnail": {
+            "type": "string",
+            "description": "The id of thumbnail file."
+        },
+        "preview": {
+            "type": "string",
+            "description": "The id of preview file."
+        },
+        "index": {
+            "type": "string",
+            "description": "The id of index file."
+        },
+        "prerender": {
+            "type": "string",
+            "description": "The id of prerendered file."
+        },
+        "title": {
+            "type": "string",
+            "description": "The title of this file."
+        },
+        "previewFailureMark": {
+            "type": "boolean",
+            "description": "Flag to show unsuccessful preview generation."
+        }
+    },
+    "required": [ "id", "mediaType", "createdDate", "fileSize", "headRevisionId", "lastModifyingUserId", "modifiedDate", "ownerId" ],
+    "links": [
+        {
+            "title": "A self-reference link to this file.",
+            "rel": "self",
+            "href": "{id}",
+            "mediaType": "application/vnd.ncloudtech.cloudoffice.file+json;v=1"
+        },
+        {
+            "title": "A link to the file's parent.",
+            "rel": "up",
+            "href": "?{parentId}",
+            "mediaType": "application/vnd.ncloudtech.cloudoffice.parentreference+json;v=1"
+        },
+        {
+            "rel": "children",
+            "href": "?upId={id}"
+        },
+        {
+            "title": "A link to the file's owner.",
+            "rel": "owner",
+            "href": "?{ownerId}",
+            "mediaType": "application/vnd.ncloudtech.cloudoffice.file+json;v=1"
+        },
+        {
+            "title": "A link to open this file for viewing or editing.",
+            "rel": "edit",
+            "href": "?{id}"
+        },
+        {
+            "title": "A link to the file's thumbnail.",
+            "rel": "preview",
+            "href": "?{id}"
+        },
+        {
+            "title": "Download URL for the file. This is only populated for non-converted files.",
+            "rel": "download",
+            "href": "?{id}"
+        },
+        {
+            "title": "Export URL(s) for the file. This is only populated for converted files.",
+            "rel": "alternate",
+            "href": "?{id}",
+            "mediaType": "application/pdf"
+        },
+        {
+            "title": "Latest version (head revision) of the file.",
+            "rel": "latest-version",
+            "href": "?{id}",
+            "mediaType": "application/vnd.ncloudtech.cloudoffice.revision+json;v=1"
+        },
+        {
+            "title": "Icon for the file.",
+            "rel": "icon",
+            "href": "?{id}",
+            "mediaType": "image/*"
+        },
+        {
+            "title": "Properties of the file.",
+            "rel": "properties",
+            "href": "{id}",
+            "mediaType": "application/vnd.ncloudtech.cloudoffice.propertylist+json;v=1"
+        },
+        {
+            "title": "Permissions for the file.",
+            "rel": "permissions",
+            "href": "{id}",
+            "mediaType": "application/vnd.ncloudtech.cloudoffice.permissionlist+json;v=1"
+        },
+        {
+            "title": "Revisions of the file.",
+            "rel": "version-history",
+            "href": "{id}",
+            "mediaType": "application/vnd.ncloudtech.cloudoffice.revisionlist+json;v=1"
+        },
+        {
+            "title": "Preview (thumbnail) for the file.",
+            "rel": "preview",
+            "href": "?{id}",
+            "mediaType": "image/*"
+        }
+    ]
+
+
+}
